@@ -34,9 +34,9 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6">Navigation</h4>
             <ul className="space-y-4 text-white/50">
-              <li><Link href="#" className="hover:text-white transition-colors">Nos destinations</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Nos vols directs</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Services premium</Link></li>
+              <li><Link href="#destinations" className="hover:text-white transition-colors">Nos destinations</Link></li>
+              <li><Link href="/results" className="hover:text-white transition-colors">Réserver un vol</Link></li>
+              <li><Link href="#services" className="hover:text-white transition-colors">Nos services</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Check-in</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Mon compte</Link></li>
             </ul>
@@ -45,11 +45,11 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6">Informations</h4>
             <ul className="space-y-4 text-white/50">
-              <li><Link href="#" className="hover:text-white transition-colors">À propos de ADL Fly</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Nos bureaux</Link></li>
+              <li><Link href="#a-propos" className="hover:text-white transition-colors">À propos de ADL Fly</Link></li>
+              <li><Link href="#bureaux" className="hover:text-white transition-colors">Nos bureaux</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Actualités</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Recrutement</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contactez-nous</Link></li>
+              <li><Link href="#contact" className="hover:text-white transition-colors">Contactez-nous</Link></li>
             </ul>
           </div>
 

@@ -44,7 +44,7 @@ function Counter({ value, prefix = "", suffix = "" }: { value: number, prefix?: 
 
 export function QuickStats() {
   return (
-    <section className="py-20 bg-adl-navy text-white overflow-hidden">
+    <section id="chiffres" className="py-20 bg-adl-navy text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
           {stats.map((stat, idx) => (

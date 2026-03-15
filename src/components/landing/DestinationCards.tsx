@@ -15,7 +15,7 @@ const destinations = [
 
 export function DestinationCards() {
   return (
-    <section className="py-24 bg-white">
+    <section id="destinations" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-adl-navy mb-4">

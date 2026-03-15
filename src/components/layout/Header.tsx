@@ -20,11 +20,12 @@ export function Header() {
   }, []);
 
   const navItems = [
-    { name: 'Destinations', href: '#' },
-    { name: 'Nos vols', href: '#' },
-    { name: 'Services', href: '#' },
-    { name: 'Gérer ma réservation', href: '#' },
-    { name: 'Check-in', href: '#' },
+    { name: 'Services', href: '#services' },
+    { name: 'Forces', href: '#forces' },
+    { name: 'À propos', href: '#a-propos' },
+    { name: 'Bureaux', href: '#bureaux' },
+    { name: 'Chiffres', href: '#chiffres' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (

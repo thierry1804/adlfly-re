@@ -1,54 +1,28 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { SearchWidget } from './SearchWidget';
-import { Plane, CheckCircle, ClipboardList, Search } from 'lucide-react';
+import { CheckCircle, ClipboardList, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface Star {
-  left: string;
-  top: string;
-  width: string;
-  height: string;
-  animationDuration: string;
-  animationDelay: string;
-}
+const HERO_VIDEO_SRC = 'https://adlfly.re/wp-content/uploads/2023/02/nuage-48501.mp4';
 
 export function HeroSection() {
-  const [stars, setStars] = useState<Star[]>([]);
-
-  useEffect(() => {
-    // Generate random star properties only on the client after hydration
-    const generatedStars = Array.from({ length: 50 }).map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      width: `${Math.random() * 3}px`,
-      height: `${Math.random() * 3}px`,
-      animationDuration: `${10 + Math.random() * 20}s`,
-      animationDelay: `${-Math.random() * 20}s`
-    }));
-    setStars(generatedStars);
-  }, []);
-
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-20 overflow-hidden bg-adl-navy">
-      {/* Background with starfield and gradient */}
+      {/* Background: nuages video + overlay pour lisibilité */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="star-field" />
-        {stars.map((star, i) => (
-          <div 
-            key={i} 
-            className="star" 
-            style={{
-              left: star.left,
-              top: star.top,
-              width: star.width,
-              height: star.height,
-              animationDuration: star.animationDuration,
-              animationDelay: star.animationDelay
-            }}
-          />
-        ))}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden
+        >
+          <source src={HERO_VIDEO_SRC} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-adl-navy/70" aria-hidden />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-adl-navy to-transparent" />
       </div>
 

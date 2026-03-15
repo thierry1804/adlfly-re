@@ -155,8 +155,6 @@ function ResultsContent() {
   );
 }
 
-const Label = ({ children, className, ...props }: any) => <label className={className} {...props}>{children}</label>;
-
 export default function ResultsPage() {
   return (
     <main>

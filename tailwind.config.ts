@@ -48,13 +48,15 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        /* Charte graphique Corsair */
         adl: {
-          navy: '#0A1628',
-          blue: '#1A3A6B',
-          sky: '#1D6FA4',
-          gold: '#D4A843',
-          orange: '#E8742A',
-          light: '#F0F5FF',
+          navy: '#15183D',      /* Bleu Corsair (header, footer, boutons primaires) */
+          blue: '#15183D',
+          sky: '#4A90D9',       /* Bleu ciel / cyan Corsair */
+          gold: '#D4A843',      /* Or / jaune (prix, accents) */
+          orange: '#E8742A',     /* Orange (CTA Réserver, accents) */
+          light: '#FFFFFF',      /* Fond sections blanches */
+          gray: '#4A4A4A',      /* Texte sur fond blanc */
         }
       },
       borderRadius: {

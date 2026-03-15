@@ -20,7 +20,7 @@ export default function BookingPage() {
   if (!offer) return <div className="pt-32 text-center font-bold">Chargement de votre réservation...</div>;
 
   return (
-    <main className="min-h-screen bg-adl-light">
+    <main className="min-h-screen bg-white">
       <Header />
       
       <div className="pt-32 pb-24 container mx-auto px-6">
@@ -32,15 +32,15 @@ export default function BookingPage() {
             { id: 3, label: 'Confirmation', icon: CheckCircle2 }
           ].map((s) => (
             <div key={s.id} className="flex flex-col items-center gap-3 relative flex-1">
-               <div className={`h-12 w-12 rounded-full flex items-center justify-center border-2 transition-all ${
-                 step >= s.id ? 'bg-adl-orange border-adl-orange text-white' : 'bg-white border-adl-light text-adl-gray'
+               <div className={`h-12 w-12 rounded-lg flex items-center justify-center border-2 transition-all ${
+                 step >= s.id ? 'bg-adl-navy border-adl-navy text-white' : 'bg-white border-gray-200 text-adl-gray'
                }`}>
                  <s.icon className="h-5 w-5" />
                </div>
                <span className={`text-xs font-bold uppercase tracking-widest ${
                  step >= s.id ? 'text-adl-navy' : 'text-adl-gray'
                }`}>{s.label}</span>
-               {s.id < 3 && <div className={`absolute top-6 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 ${step > s.id ? 'bg-adl-orange' : 'bg-adl-light'}`} />}
+               {s.id < 3 && <div className={`absolute top-6 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 ${step > s.id ? 'bg-adl-navy' : 'bg-gray-200'}`} />}
             </div>
           ))}
         </div>
@@ -48,14 +48,14 @@ export default function BookingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
           {/* Main Form */}
           <div className="lg:col-span-8">
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-adl-light">
+            <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
               <h2 className="text-3xl font-black text-adl-navy mb-8">Informations <span className="text-adl-sky">Passager</span></h2>
               
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label className="font-bold text-adl-navy">Civilité</Label>
-                    <select className="w-full bg-adl-light border-none h-12 rounded-xl px-4 font-medium focus:ring-2 focus:ring-adl-orange">
+                    <select className="w-full bg-gray-50 border border-gray-200 h-12 rounded-lg px-4 font-medium focus:ring-2 focus:ring-adl-navy">
                       <option>M.</option>
                       <option>Mme</option>
                     </select>
@@ -65,29 +65,29 @@ export default function BookingPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label className="font-bold text-adl-navy">Prénom</Label>
-                    <Input placeholder="Jean" className="bg-adl-light border-none h-12 rounded-xl px-4 font-medium" />
+                    <Input placeholder="Jean" className="bg-gray-50 border border-gray-200 h-12 rounded-lg px-4 font-medium" />
                   </div>
                   <div className="space-y-2">
                     <Label className="font-bold text-adl-navy">Nom</Label>
-                    <Input placeholder="Dupont" className="bg-adl-light border-none h-12 rounded-xl px-4 font-medium" />
+                    <Input placeholder="Dupont" className="bg-gray-50 border border-gray-200 h-12 rounded-lg px-4 font-medium" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                    <div className="space-y-2">
                     <Label className="font-bold text-adl-navy">Email</Label>
-                    <Input type="email" placeholder="jean.dupont@email.com" className="bg-adl-light border-none h-12 rounded-xl px-4 font-medium" />
+                    <Input type="email" placeholder="jean.dupont@email.com" className="bg-gray-50 border border-gray-200 h-12 rounded-lg px-4 font-medium" />
                   </div>
                   <div className="space-y-2">
                     <Label className="font-bold text-adl-navy">Téléphone</Label>
-                    <Input placeholder="+262 6 92 00 00 00" className="bg-adl-light border-none h-12 rounded-xl px-4 font-medium" />
+                    <Input placeholder="+262 6 92 00 00 00" className="bg-gray-50 border border-gray-200 h-12 rounded-lg px-4 font-medium" />
                   </div>
                 </div>
 
-                <div className="pt-8 border-t border-adl-light">
+                <div className="pt-8 border-t border-gray-200">
                    <Button 
                     onClick={() => window.location.href='/confirmation'}
-                    className="w-full bg-adl-orange hover:bg-adl-orange/90 text-white text-lg font-black h-16 rounded-full shadow-2xl transition-all hover:scale-105"
+                    className="w-full bg-adl-navy hover:bg-adl-navy/90 text-white text-lg font-bold h-14 rounded-lg shadow-md"
                    >
                      Procéder au paiement ({offer.price.total} €)
                    </Button>
@@ -98,9 +98,9 @@ export default function BookingPage() {
 
           {/* Sidebar Summary */}
           <div className="lg:col-span-4">
-            <div className="bg-adl-navy rounded-3xl p-6 text-white shadow-xl sticky top-32">
-              <h3 className="text-xl font-black mb-6 flex items-center gap-2">
-                <Plane className="h-5 w-5 text-adl-orange" /> Récapitulatif
+            <div className="bg-adl-navy rounded-xl p-6 text-white shadow-md sticky top-32">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <Plane className="h-5 w-5 text-adl-sky" /> Récapitulatif
               </h3>
               
               <div className="space-y-6">
@@ -124,13 +124,13 @@ export default function BookingPage() {
                       <span className="text-white/60">Taxes et frais</span>
                       <span className="font-bold">{(parseFloat(offer.price.total) * 0.15).toFixed(2)} €</span>
                    </div>
-                   <div className="flex justify-between items-center text-xl font-black pt-4 border-t border-white/10 text-adl-orange">
+                   <div className="flex justify-between items-center text-xl font-bold pt-4 border-t border-white/10 text-white">
                       <span>Total TTC</span>
                       <span>{offer.price.total} €</span>
                    </div>
                 </div>
 
-                <div className="bg-white/5 rounded-2xl p-4 flex items-center gap-3">
+                <div className="bg-white/5 rounded-lg p-4 flex items-center gap-3">
                    <Luggage className="h-5 w-5 text-adl-sky" />
                    <span className="text-xs font-medium text-white/60">Bagage cabine (10kg) et bagage soute (23kg) inclus par passager.</span>
                 </div>

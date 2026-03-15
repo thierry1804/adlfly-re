@@ -7,7 +7,7 @@ import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, ArrowRight } from 
 
 export function Footer() {
   return (
-    <footer className="bg-[#060E1A] text-white pt-24 pb-12 border-t border-white/5">
+    <footer className="bg-adl-navy text-white pt-24 pb-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
@@ -16,16 +16,16 @@ export function Footer() {
               ADL Fly, votre Agent Général Aérien basé à La Réunion. Expertise, réactivité et passion au service de votre voyage.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-adl-orange transition-colors">
+              <a href="#" className="h-10 w-10 rounded-lg bg-adl-navy/80 flex items-center justify-center hover:bg-adl-sky transition-colors border border-white/10">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-adl-sky transition-colors">
+              <a href="#" className="h-10 w-10 rounded-lg bg-adl-navy/80 flex items-center justify-center hover:bg-adl-sky transition-colors border border-white/10">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-adl-orange transition-colors">
+              <a href="#" className="h-10 w-10 rounded-lg bg-adl-navy/80 flex items-center justify-center hover:bg-adl-sky transition-colors border border-white/10">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-adl-sky transition-colors">
+              <a href="#" className="h-10 w-10 rounded-lg bg-adl-navy/80 flex items-center justify-center hover:bg-adl-sky transition-colors border border-white/10">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -56,11 +56,11 @@ export function Footer() {
           <div className="space-y-6">
             <h4 className="text-lg font-bold mb-6">Contact</h4>
             <div className="flex items-center gap-4 text-white/50">
-              <Phone className="h-5 w-5 text-adl-orange" />
+              <Phone className="h-5 w-5 text-adl-sky" />
               <span>+262 2 62 66 62 37</span>
             </div>
             <div className="flex items-center gap-4 text-white/50">
-              <Mail className="h-5 w-5 text-adl-orange" />
+              <Mail className="h-5 w-5 text-adl-sky" />
               <span>contact@adlfly.re</span>
             </div>
             <div className="mt-8">
@@ -69,9 +69,9 @@ export function Footer() {
                 <input 
                   type="email" 
                   placeholder="Votre email" 
-                  className="bg-white/5 border border-white/10 rounded-full px-4 py-2 flex-1 focus:outline-none focus:ring-1 focus:ring-adl-orange"
+                  className="bg-white/5 border border-white/10 rounded-full px-4 py-2 flex-1 focus:outline-none focus:ring-1 focus:ring-adl-navy"
                 />
-                <button className="bg-adl-orange p-2 rounded-full hover:scale-105 transition-transform">
+                <button className="bg-adl-navy p-2 rounded-lg hover:bg-adl-navy/90 transition-colors">
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </div>

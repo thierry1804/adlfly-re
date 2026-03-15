@@ -4,47 +4,48 @@
 
 @layer base {
   :root {
-    --background: 216 100% 98%;
-    --foreground: 222 47% 11%;
+    /* Charte Corsair - fonds blancs, primaire bleu */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 22 81% 54%; /* ADL Orange */
+    --popover-foreground: 0 0% 18%;
+    --primary: 234 47% 18%; /* Bleu Corsair #15183D */
     --primary-foreground: 0 0% 100%;
-    --secondary: 217 61% 26%; /* ADL Blue */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 216 100% 97%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 42 61% 55%; /* ADL Gold */
+    --secondary: 214 31% 91%;
+    --secondary-foreground: 234 47% 18%;
+    --muted: 214 32% 96%;
+    --muted-foreground: 0 0% 29%;
+    --accent: 22 81% 54%; /* Orange CTA */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 22 81% 54%;
-    --radius: 1rem;
+    --ring: 234 47% 18%;
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222 47% 10%; /* ADL Navy */
+    --background: 234 47% 10%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
+    --card: 234 47% 14%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
+    --popover: 234 47% 14%;
     --popover-foreground: 210 40% 98%;
     --primary: 22 81% 54%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 217 33% 17%;
+    --secondary: 234 30% 20%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+    --muted: 234 30% 20%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 42 61% 55%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+    --border: 234 30% 22%;
+    --input: 234 30% 22%;
     --ring: 22 81% 54%;
   }
 }
@@ -58,8 +59,9 @@
   }
 }
 
+/* Carte formulaire type Corsair (fond blanc, coins arrondis) */
 .glass-morphism {
-  @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl;
+  @apply bg-white border border-gray-200 shadow-lg;
 }
 
 .text-hero {

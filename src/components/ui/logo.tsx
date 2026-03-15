@@ -12,17 +12,17 @@ export function Logo({ className = "h-8" }: { className?: string }) {
         <path
           d="M10 20L30 10L50 20L30 30L10 20Z"
           fill="currentColor"
-          className="text-adl-orange"
+          className="text-adl-sky"
         />
         <path
           d="M20 20L70 5L90 20L70 35L20 20Z"
           fill="currentColor"
           fillOpacity="0.8"
-          className="text-adl-sky"
+          className="text-white"
         />
       </svg>
-      <span className="text-2xl font-extrabold tracking-tighter text-white">
-        ADL<span className="text-adl-orange">FLY</span>
+      <span className="text-xl font-bold tracking-tight text-white">
+        ADL<span className="text-white">FLY</span>
       </span>
     </div>
   );

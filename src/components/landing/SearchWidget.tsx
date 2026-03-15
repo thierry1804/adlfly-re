@@ -96,14 +96,14 @@ export function SearchWidget() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-3xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700">
-      {/* Tabs */}
+    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700">
+      {/* Tabs - style Corsair */}
       <div className="flex gap-4 mb-6">
         <button 
           onClick={() => setTripType('round')}
           className={cn(
             "text-sm font-bold pb-2 transition-all border-b-2",
-            tripType === 'round' ? "border-adl-orange text-white" : "border-transparent text-white/50"
+            tripType === 'round' ? "border-adl-navy text-adl-navy" : "border-transparent text-adl-gray"
           )}
         >
           Aller-retour
@@ -112,7 +112,7 @@ export function SearchWidget() {
           onClick={() => setTripType('one')}
           className={cn(
             "text-sm font-bold pb-2 transition-all border-b-2",
-            tripType === 'one' ? "border-adl-orange text-white" : "border-transparent text-white/50"
+            tripType === 'one' ? "border-adl-navy text-adl-navy" : "border-transparent text-adl-gray"
           )}
         >
           Aller simple
@@ -122,9 +122,9 @@ export function SearchWidget() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
         {/* Origin */}
         <div className="md:col-span-3 relative">
-          <Label className="text-white/70 text-xs mb-2 block font-medium uppercase tracking-wider">Origine</Label>
+          <Label className="text-adl-gray text-xs mb-2 block font-medium">Origine</Label>
           <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 h-5 w-5" />
+            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
             <Input 
               placeholder="D'où partez-vous ?"
               value={originSearch || (origin?.name || '')}
@@ -132,10 +132,10 @@ export function SearchWidget() {
                 setOriginSearch(e.target.value);
                 if (origin) setOrigin(null);
               }}
-              className="bg-white/5 border-white/20 text-white pl-10 h-14 rounded-xl focus:ring-adl-orange transition-all placeholder:text-white/30"
+              className="bg-white border border-gray-200 text-adl-navy pl-10 h-14 rounded-lg focus:ring-2 focus:ring-adl-navy focus:border-adl-navy placeholder:text-adl-gray/70"
             />
             {originResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 bg-adl-navy border border-white/10 rounded-xl mt-2 overflow-hidden z-20 shadow-2xl">
+              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 overflow-hidden z-20 shadow-lg">
                 {originResults.map((loc) => (
                   <button
                     key={loc.iata}
@@ -144,10 +144,10 @@ export function SearchWidget() {
                       setOriginSearch(loc.name);
                       setOriginResults([]);
                     }}
-                    className="w-full text-left p-4 hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors"
+                    className="w-full text-left p-4 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors"
                   >
-                    <div className="text-white font-bold">{loc.city} ({loc.iata})</div>
-                    <div className="text-white/50 text-xs">{loc.name}</div>
+                    <div className="text-adl-navy font-bold">{loc.city} ({loc.iata})</div>
+                    <div className="text-adl-gray text-xs">{loc.name}</div>
                   </button>
                 ))}
               </div>
@@ -161,7 +161,7 @@ export function SearchWidget() {
             variant="ghost" 
             size="icon" 
             onClick={swapLocations}
-            className="text-white/50 hover:text-adl-orange hover:bg-white/10 rounded-full"
+            className="text-adl-gray hover:text-adl-navy hover:bg-gray-100 rounded-lg"
           >
             <ArrowRightLeft className="h-5 w-5" />
           </Button>
@@ -169,9 +169,9 @@ export function SearchWidget() {
 
         {/* Destination */}
         <div className="md:col-span-3 relative">
-          <Label className="text-white/70 text-xs mb-2 block font-medium uppercase tracking-wider">Destination</Label>
+          <Label className="text-adl-gray text-xs mb-2 block font-medium">Destination</Label>
           <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 h-5 w-5" />
+            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
             <Input 
               placeholder="Où allez-vous ?"
               value={destSearch || (destination?.name || '')}
@@ -179,10 +179,10 @@ export function SearchWidget() {
                 setDestSearch(e.target.value);
                 if (destination) setDestination(null);
               }}
-              className="bg-white/5 border-white/20 text-white pl-10 h-14 rounded-xl focus:ring-adl-orange transition-all placeholder:text-white/30"
+              className="bg-white border border-gray-200 text-adl-navy pl-10 h-14 rounded-lg focus:ring-2 focus:ring-adl-navy focus:border-adl-navy placeholder:text-adl-gray/70"
             />
             {destResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 bg-adl-navy border border-white/10 rounded-xl mt-2 overflow-hidden z-20 shadow-2xl">
+              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 overflow-hidden z-20 shadow-lg">
                 {destResults.map((loc) => (
                   <button
                     key={loc.iata}
@@ -191,10 +191,10 @@ export function SearchWidget() {
                       setDestSearch(loc.name);
                       setDestResults([]);
                     }}
-                    className="w-full text-left p-4 hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors"
+                    className="w-full text-left p-4 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors"
                   >
-                    <div className="text-white font-bold">{loc.city} ({loc.iata})</div>
-                    <div className="text-white/50 text-xs">{loc.name}</div>
+                    <div className="text-adl-navy font-bold">{loc.city} ({loc.iata})</div>
+                    <div className="text-adl-gray text-xs">{loc.name}</div>
                   </button>
                 ))}
               </div>
@@ -204,23 +204,22 @@ export function SearchWidget() {
 
         {/* Dates */}
         <div className="md:col-span-3">
-          <Label className="text-white/70 text-xs mb-2 block font-medium uppercase tracking-wider">Dates</Label>
+          <Label className="text-adl-gray text-xs mb-2 block font-medium">Dates</Label>
           <div className="grid grid-cols-2 gap-2">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="h-14 bg-white/5 border-white/20 text-white hover:bg-white/10 flex justify-start pl-4 rounded-xl">
-                  <Calendar className="mr-2 h-4 w-4 opacity-50" />
+                <Button variant="outline" className="h-14 bg-white border border-gray-200 text-adl-navy hover:bg-gray-50 flex justify-start pl-4 rounded-lg">
+                  <Calendar className="mr-2 h-4 w-4 text-adl-gray" />
                   <span className="truncate">{departureDate ? format(departureDate, 'dd MMM', { locale: fr }) : 'Départ'}</span>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-adl-navy border-white/10" align="start">
+              <PopoverContent className="w-auto p-0 bg-white border border-gray-200" align="start">
                 <CalendarComponent
                   mode="single"
                   selected={departureDate}
                   onSelect={setDepartureDate}
                   disabled={(date) => date < new Date()}
                   initialFocus
-                  className="bg-adl-navy text-white"
                 />
               </PopoverContent>
             </Popover>
@@ -230,20 +229,19 @@ export function SearchWidget() {
                 <Button 
                   variant="outline" 
                   disabled={tripType === 'one'}
-                  className="h-14 bg-white/5 border-white/20 text-white hover:bg-white/10 flex justify-start pl-4 rounded-xl disabled:opacity-30"
+                  className="h-14 bg-white border border-gray-200 text-adl-navy hover:bg-gray-50 flex justify-start pl-4 rounded-lg disabled:opacity-50"
                 >
-                  <Calendar className="mr-2 h-4 w-4 opacity-50" />
+                  <Calendar className="mr-2 h-4 w-4 text-adl-gray" />
                   <span className="truncate">{returnDate ? format(returnDate, 'dd MMM', { locale: fr }) : 'Retour'}</span>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-adl-navy border-white/10" align="start">
+              <PopoverContent className="w-auto p-0 bg-white border border-gray-200" align="start">
                 <CalendarComponent
                   mode="single"
                   selected={returnDate}
                   onSelect={setReturnDate}
                   disabled={(date) => date < (departureDate || new Date())}
                   initialFocus
-                  className="bg-adl-navy text-white"
                 />
               </PopoverContent>
             </Popover>
@@ -253,32 +251,32 @@ export function SearchWidget() {
         {/* Passengers & Search */}
         <div className="md:col-span-2 flex gap-2">
            <div className="flex-1">
-             <Label className="text-white/70 text-xs mb-2 block font-medium uppercase tracking-wider">Passagers</Label>
+             <Label className="text-adl-gray text-xs mb-2 block font-medium">Passagers</Label>
              <div className="relative">
-                <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 h-5 w-5" />
+                <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
                 <select 
                   value={passengers}
                   onChange={(e) => setPassengers(parseInt(e.target.value))}
-                  className="w-full bg-white/5 border border-white/20 text-white pl-10 h-14 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-adl-orange"
+                  className="w-full bg-white border border-gray-200 text-adl-navy pl-10 h-14 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-adl-navy"
                 >
-                  <option value="1" className="bg-adl-navy">1 Adulte</option>
-                  <option value="2" className="bg-adl-navy">2 Adultes</option>
-                  <option value="3" className="bg-adl-navy">3 Adultes</option>
-                  <option value="4" className="bg-adl-navy">4 Adultes</option>
+                  <option value="1" className="bg-white">1 Adulte</option>
+                  <option value="2" className="bg-white">2 Adultes</option>
+                  <option value="3" className="bg-white">3 Adultes</option>
+                  <option value="4" className="bg-white">4 Adultes</option>
                 </select>
              </div>
            </div>
         </div>
 
-        {/* Final CTA */}
+        {/* Final CTA - bouton bleu Corsair */}
         <div className="md:col-span-12 mt-4 flex justify-end">
            <Button 
             onClick={handleSearch}
             disabled={!origin || !destination || !departureDate}
-            className="w-full md:w-auto bg-adl-orange hover:bg-adl-orange/90 text-white text-lg font-extrabold h-16 px-10 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:scale-100"
+            className="w-full md:w-auto bg-adl-navy hover:bg-adl-navy/90 text-white text-lg font-bold h-14 px-10 rounded-lg shadow-md disabled:opacity-50"
            >
-             <Search className="mr-2 h-6 w-6" />
-             Rechercher un vol
+             <Search className="mr-2 h-5 w-5" />
+             Réserver
            </Button>
         </div>
       </div>

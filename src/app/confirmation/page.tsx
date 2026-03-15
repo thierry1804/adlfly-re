@@ -16,30 +16,27 @@ export default function ConfirmationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-adl-light">
+    <main className="min-h-screen bg-white">
       <Header />
       
       <div className="pt-40 pb-24 container mx-auto px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-[3rem] p-12 shadow-2xl border border-adl-light relative overflow-hidden">
-             {/* Background Pattern */}
-             <div className="absolute top-0 right-0 w-32 h-32 bg-adl-orange/10 rounded-bl-[5rem]" />
-             
+          <div className="bg-white rounded-xl p-12 shadow-md border border-gray-200 relative overflow-hidden">
              <div className="relative z-10">
-                <div className="h-24 w-24 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-in zoom-in duration-500 shadow-xl shadow-emerald-500/30">
+                <div className="h-24 w-24 bg-adl-navy rounded-lg flex items-center justify-center mx-auto mb-8 animate-in zoom-in duration-500">
                   <CheckCircle2 className="h-12 w-12 text-white" />
                 </div>
                 
-                <h1 className="text-4xl font-black text-adl-navy mb-4">C'est confirmé !</h1>
+                <h1 className="text-3xl font-bold text-adl-navy mb-4">C'est confirmé !</h1>
                 <p className="text-adl-gray text-lg mb-8">Votre réservation pour votre prochain voyage est validée. Préparez vos valises !</p>
                 
-                <div className="bg-adl-navy rounded-2xl p-6 text-white mb-10 text-left">
+                <div className="bg-adl-navy rounded-xl p-6 text-white mb-10 text-left">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-white/50">Référence dossier</span>
-                    <span className="text-xl font-black text-adl-orange">{ref}</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-white/70">Référence dossier</span>
+                    <span className="text-xl font-bold text-adl-sky">{ref}</span>
                   </div>
                   <div className="flex items-center gap-4 py-4 border-t border-white/10">
-                    <div className="h-10 w-10 bg-white/5 rounded-full flex items-center justify-center">
+                    <div className="h-10 w-10 bg-white/10 rounded-lg flex items-center justify-center">
                       <Mail className="h-5 w-5 text-adl-sky" />
                     </div>
                     <p className="text-sm font-medium text-white/80">Un email de confirmation avec vos billets électroniques a été envoyé à votre adresse.</p>
@@ -47,10 +44,10 @@ export default function ConfirmationPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Button asChild className="bg-adl-navy hover:bg-adl-navy/90 text-white rounded-full h-14 font-bold">
+                  <Button asChild className="bg-adl-navy hover:bg-adl-navy/90 text-white rounded-lg h-14 font-bold">
                     <Link href="/">Gérer ma réservation</Link>
                   </Button>
-                  <Button asChild variant="outline" className="border-adl-light text-adl-navy hover:bg-adl-light rounded-full h-14 font-bold">
+                  <Button asChild variant="outline" className="border-gray-200 text-adl-navy hover:bg-gray-50 rounded-lg h-14 font-bold">
                     <Link href="/">Retour à l'accueil</Link>
                   </Button>
                 </div>

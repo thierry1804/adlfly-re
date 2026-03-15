@@ -54,25 +54,25 @@ export function HeroSection() {
 
       <div className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
         <h1 className="text-hero font-extrabold text-white mb-6 animate-in fade-in slide-in-from-top duration-1000">
-          Sans Limite<span className="text-adl-orange">.</span>
+          Vols au départ de La Réunion<span className="text-adl-sky">.</span>
         </h1>
-        <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-12 font-medium animate-in fade-in slide-in-from-top duration-1000 delay-200">
-          Votre agent général aérien depuis La Réunion.<br />
+        <p className="text-xl md:text-2xl text-white/90 max-w-3xl mb-12 font-medium animate-in fade-in slide-in-from-top duration-1000 delay-200">
+          Réservez votre billet vers l'océan Indien, les Antilles ou l'Afrique.<br />
           <span className="text-adl-sky">Réunion · Mayotte · Madagascar · Martinique · Guadeloupe</span>
         </p>
 
-        {/* Quick Actions */}
+        {/* Quick Actions - style Corsair (coins arrondis, fond discret) */}
         <div className="flex flex-wrap justify-center gap-4 mb-16 animate-in fade-in slide-in-from-top duration-1000 delay-300">
-          <Button variant="outline" className="rounded-full border-white/20 text-white bg-white/5 hover:bg-white/10 px-6 py-6 h-auto">
-            <CheckCircle className="mr-2 h-5 w-5 text-adl-orange" />
+          <Button variant="outline" className="rounded-lg border-white/30 text-white bg-white/5 hover:bg-white/10 px-5 py-3 h-auto text-sm font-medium">
+            <CheckCircle className="mr-2 h-4 w-4 text-adl-sky" />
             Check-in en ligne
           </Button>
-          <Button variant="outline" className="rounded-full border-white/20 text-white bg-white/5 hover:bg-white/10 px-6 py-6 h-auto">
-            <ClipboardList className="mr-2 h-5 w-5 text-adl-orange" />
+          <Button variant="outline" className="rounded-lg border-white/30 text-white bg-white/5 hover:bg-white/10 px-5 py-3 h-auto text-sm font-medium">
+            <ClipboardList className="mr-2 h-4 w-4 text-adl-sky" />
             Gérer ma réservation
           </Button>
-          <Button variant="outline" className="rounded-full border-white/20 text-white bg-white/5 hover:bg-white/10 px-6 py-6 h-auto">
-            <Search className="mr-2 h-5 w-5 text-adl-orange" />
+          <Button variant="outline" className="rounded-lg border-white/30 text-white bg-white/5 hover:bg-white/10 px-5 py-3 h-auto text-sm font-medium">
+            <Search className="mr-2 h-4 w-4 text-adl-sky" />
             Suivi de vol
           </Button>
         </div>
@@ -80,8 +80,8 @@ export function HeroSection() {
         <SearchWidget />
       </div>
 
-      {/* Subtle bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      {/* Transition vers section suivante */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-adl-navy to-transparent z-10" />
     </section>
   );
 }

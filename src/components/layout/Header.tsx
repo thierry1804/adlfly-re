@@ -32,8 +32,8 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4',
         isScrolled 
-          ? 'bg-adl-navy/90 backdrop-blur-md shadow-lg py-3' 
-          : 'bg-transparent'
+          ? 'bg-adl-navy shadow-md py-3' 
+          : 'bg-adl-navy'
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -47,7 +47,7 @@ export function Header() {
             <Link 
               key={item.name} 
               href={item.href}
-              className="text-sm font-semibold text-white/90 hover:text-adl-orange transition-colors"
+              className="text-sm font-medium text-white hover:text-white/90 transition-colors"
             >
               {item.name}
             </Link>
@@ -59,12 +59,12 @@ export function Header() {
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hidden sm:flex">
             <Globe className="h-5 w-5" />
           </Button>
-          <Button variant="outline" className="hidden lg:flex border-white/20 text-white hover:bg-white/10 rounded-full">
+          <Button variant="outline" className="hidden lg:flex bg-white text-adl-navy border-adl-navy hover:bg-gray-100 rounded-lg">
             <User className="h-4 w-4 mr-2" />
             Mon compte
           </Button>
           <Link href="/results">
-            <Button className="bg-adl-orange hover:bg-adl-orange/90 text-white rounded-full px-6 font-bold shadow-lg transition-transform hover:scale-105">
+            <Button className="bg-adl-navy hover:bg-adl-navy/90 text-white rounded-lg px-6 font-bold shadow-md">
               Réserver
             </Button>
           </Link>
@@ -86,13 +86,13 @@ export function Header() {
             <Link 
               key={item.name} 
               href={item.href}
-              className="text-lg font-bold text-white hover:text-adl-orange py-2"
+              className="text-lg font-medium text-white hover:text-white/90 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}
             </Link>
           ))}
-          <Button variant="outline" className="w-full border-white/20 text-white rounded-full mt-4">
+          <Button variant="outline" className="w-full bg-white text-adl-navy border-adl-navy rounded-lg mt-4">
             <User className="h-4 w-4 mr-2" />
             Mon compte
           </Button>

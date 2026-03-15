@@ -1,0 +1,23 @@
+# **App Name**: ADL Fly Booking
+
+## Core Features:
+
+- Flight Search & Amadeus Integration: Utilize the Amadeus Flight Offers Search API (via Next.js API Routes) to enable users to search for one-way or round-trip flights based on origin, destination, departure/return dates, and passenger details.
+- Airport & City Autocompletion: Implement real-time autocompletion for origin and destination input fields using the Amadeus Airport & City Search API to enhance user experience.
+- Dynamic Flight Results Display: Present flight search results in a clear list, with flight cards detailing airline, flight info, schedules, duration, stopovers, and total price. Include robust filtering options (price, stops, timings, airline, class) and a summary bar.
+- Detailed Flight Itinerary View: Provide a comprehensive, interactive view of a selected flight's itinerary, featuring a vertical timeline with animated elements, luggage information, and a transparent price breakdown before proceeding to booking.
+- Interactive Landing Page: A visually rich landing page serving as the app's entry point, featuring a full-screen hero with an integrated flight search widget, dynamic content sections (quick stats, destinations, offers, services), and testimonials.
+- Passenger Information Form (Mock): A multi-step form to collect essential passenger details (civility, name, birth date, contact information), accompanied by a sticky flight summary, designed as a placeholder for a full booking flow.
+- Booking Confirmation (Mock): Display a clear confirmation screen for a mock booking, including a generated booking reference, a flight and passenger summary, and call-to-action buttons for managing the reservation or returning to the homepage, with animated visual feedback.
+
+## Style Guidelines:
+
+- Primary UI accents and informational elements: ADL Sky (#1D6FA4), a clear, vibrant blue to represent the aviation theme and guide user attention against dark backgrounds.
+- Main background: ADL Navy (#0A1628), a deep, dark blue chosen as the principal background to evoke a premium and sophisticated atmosphere, suitable for a professional air travel platform.
+- Secondary accents: ADL Gold (#D4A843), for premium features, selected secondary call-to-action elements, and highlighting special pricing, adding a touch of luxury and prestige.
+- Primary call to action (CTA): ADL Orange (#E8742A), a high-visibility, energetic orange specifically designated for critical interactive elements like the 'Rechercher un vol' button, ensuring user focus.
+- Alternating section backgrounds: ADL Light (#F0F5FF), a pale, desaturated blue used for content sections that require a lighter backdrop to create visual hierarchy and relief.
+- All text uses 'Plus Jakarta Sans', a modern sans-serif font. Hero headlines are set with strong emphasis (800 weight), section titles are distinct (700 weight), and body text is designed for optimal readability (400/500 weight). Note: currently only Google Fonts are supported.
+- Leverage inline SVG icons for the brand logo (a stylized plane with 'ADL FLY'), specific service offerings (e.g., meet & greet, expertise icons), and social media links. Icons are designed for clarity and will adapt to color themes, with social media icons featuring colored hover effects.
+- The layout is built mobile-first, utilizing Tailwind CSS breakpoints (sm, md, lg, xl, 2xl) for responsiveness. Key features include a sticky header transitioning smoothly from transparent to solid navy, a full-screen hero section, glassmorphism on search widgets (bg-white/10, backdrop-blur-md), generous rounded corners on all cards (rounded-2xl / rounded-3xl), and soft shadows (shadow-xl) for depth without harsh borders.
+- Extensive use of framer-motion for smooth UI animations like 'fadeInUp' and staggered appearances for cards and section content. Micro-interactions include 'hover scale(1.03)' effects on cards and buttons with background/shadow transitions. The header smoothly transitions on scroll with a backdrop-blur effect. The hero background features an animated gradient with subtle CSS particles. Animated counters for quick stats, pulsating badges for special offers, and animated checkmarks on confirmation screens further enrich the user experience.

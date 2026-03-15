@@ -1,27 +1,51 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchWidget } from './SearchWidget';
 import { Plane, CheckCircle, ClipboardList, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+interface Star {
+  left: string;
+  top: string;
+  width: string;
+  height: string;
+  animationDuration: string;
+  animationDelay: string;
+}
+
 export function HeroSection() {
+  const [stars, setStars] = useState<Star[]>([]);
+
+  useEffect(() => {
+    // Generate random star properties only on the client after hydration
+    const generatedStars = Array.from({ length: 50 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      width: `${Math.random() * 3}px`,
+      height: `${Math.random() * 3}px`,
+      animationDuration: `${10 + Math.random() * 20}s`,
+      animationDelay: `${-Math.random() * 20}s`
+    }));
+    setStars(generatedStars);
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-20 overflow-hidden bg-adl-navy">
       {/* Background with starfield and gradient */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="star-field" />
-        {[...Array(50)].map((_, i) => (
+        {stars.map((star, i) => (
           <div 
             key={i} 
             className="star" 
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3}px`,
-              height: `${Math.random() * 3}px`,
-              animationDuration: `${10 + Math.random() * 20}s`,
-              animationDelay: `${-Math.random() * 20}s`
+              left: star.left,
+              top: star.top,
+              width: star.width,
+              height: star.height,
+              animationDuration: star.animationDuration,
+              animationDelay: star.animationDelay
             }}
           />
         ))}

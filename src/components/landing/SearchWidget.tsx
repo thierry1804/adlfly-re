@@ -96,14 +96,20 @@ export function SearchWidget() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700">
+    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700 relative overflow-hidden">
+      {/* Dégradé entre le fond du panneau et les champs / CTA (sous le contenu, au-dessus du fond) */}
+      <div className="pointer-events-none absolute inset-0 z-[1] rounded-xl overflow-hidden" aria-hidden>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-adl-navy to-transparent" />
+      </div>
+
+      <div className="relative z-10">
       {/* Tabs - style Corsair */}
       <div className="flex gap-4 mb-6">
         <button 
           onClick={() => setTripType('round')}
           className={cn(
-            "text-sm font-bold pb-2 transition-all border-b-2",
-            tripType === 'round' ? "border-adl-navy text-adl-navy" : "border-transparent text-adl-gray"
+            "text-sm font-bold pb-2 transition-colors border-b-2",
+            tripType === 'round' ? "border-white text-white" : "border-transparent text-white/55 hover:text-white/80"
           )}
         >
           Aller-retour
@@ -111,8 +117,8 @@ export function SearchWidget() {
         <button 
           onClick={() => setTripType('one')}
           className={cn(
-            "text-sm font-bold pb-2 transition-all border-b-2",
-            tripType === 'one' ? "border-adl-navy text-adl-navy" : "border-transparent text-adl-gray"
+            "text-sm font-bold pb-2 transition-colors border-b-2",
+            tripType === 'one' ? "border-white text-white" : "border-transparent text-white/55 hover:text-white/80"
           )}
         >
           Aller simple
@@ -122,7 +128,7 @@ export function SearchWidget() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
         {/* Origin */}
         <div className="md:col-span-3 relative">
-          <Label className="text-adl-gray text-xs mb-2 block font-medium">Origine</Label>
+          <Label className="text-white/80 text-xs mb-2 block font-medium">Origine</Label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
             <Input 
@@ -161,7 +167,7 @@ export function SearchWidget() {
             variant="ghost" 
             size="icon" 
             onClick={swapLocations}
-            className="text-adl-gray hover:text-adl-navy hover:bg-gray-100 rounded-lg"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-lg"
           >
             <ArrowRightLeft className="h-5 w-5" />
           </Button>
@@ -169,7 +175,7 @@ export function SearchWidget() {
 
         {/* Destination */}
         <div className="md:col-span-3 relative">
-          <Label className="text-adl-gray text-xs mb-2 block font-medium">Destination</Label>
+          <Label className="text-white/80 text-xs mb-2 block font-medium">Destination</Label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
             <Input 
@@ -204,7 +210,7 @@ export function SearchWidget() {
 
         {/* Dates */}
         <div className="md:col-span-3">
-          <Label className="text-adl-gray text-xs mb-2 block font-medium">Dates</Label>
+          <Label className="text-white/80 text-xs mb-2 block font-medium">Dates</Label>
           <div className="grid grid-cols-2 gap-2">
             <Popover>
               <PopoverTrigger asChild>
@@ -251,7 +257,7 @@ export function SearchWidget() {
         {/* Passengers & Search */}
         <div className="md:col-span-2 flex gap-2">
            <div className="flex-1">
-             <Label className="text-adl-gray text-xs mb-2 block font-medium">Passagers</Label>
+             <Label className="text-white/80 text-xs mb-2 block font-medium">Passagers</Label>
              <div className="relative">
                 <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
                 <select 
@@ -273,12 +279,13 @@ export function SearchWidget() {
            <Button 
             onClick={handleSearch}
             disabled={!origin || !destination || !departureDate}
-            className="w-full md:w-auto bg-adl-navy hover:bg-adl-navy/90 text-white text-lg font-bold h-14 px-10 rounded-lg shadow-md disabled:opacity-50"
+            className="w-full md:w-auto bg-white text-[rgb(0,20,46)] hover:bg-gray-100 text-lg font-bold h-14 px-10 rounded-lg border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.2)] disabled:opacity-50"
            >
              <Search className="mr-2 h-5 w-5" />
              Réserver
            </Button>
         </div>
+      </div>
       </div>
     </div>
   );

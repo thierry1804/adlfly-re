@@ -59,9 +59,22 @@
   }
 }
 
-/* Carte formulaire type Corsair (fond blanc, coins arrondis) */
+/* Panneau recherche — gamme dérivée de rgb(0, 20, 46) */
 .glass-morphism {
-  @apply bg-white border border-gray-200 shadow-lg;
+  --search-base-r: 0;
+  --search-base-g: 20;
+  --search-base-b: 46;
+  background: linear-gradient(
+    165deg,
+    rgb(12, 36, 72) 0%,
+    rgb(var(--search-base-r), var(--search-base-g), var(--search-base-b)) 48%,
+    rgb(0, 14, 34) 100%
+  );
+  border: none;
+  border-image: none;
+  box-shadow:
+    0 6px 28px rgba(0, 4, 14, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .text-hero {

@@ -51,6 +51,7 @@ export default {
         /* Charte graphique Corsair */
         adl: {
           navy: '#15183D',      /* Bleu Corsair (header, footer, boutons primaires) */
+          navyDeep: '#0a0c24', /* Bleu plus foncé — CTA sur fond clair / pastel */
           blue: '#15183D',
           sky: '#4A90D9',       /* Bleu ciel / cyan Corsair */
           gold: '#D4A843',      /* Or / jaune (prix, accents) */

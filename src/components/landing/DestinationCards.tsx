@@ -22,7 +22,7 @@ export function DestinationCards() {
             Les meilleures offres ADL Fly
           </h2>
           <p className="text-lg text-adl-gray max-w-2xl">
-            Réservez votre billet vers l'océan Indien, les Antilles ou l'Afrique au meilleur tarif.
+            Réservez votre vol en tout confiance.
           </p>
         </div>
 

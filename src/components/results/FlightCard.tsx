@@ -8,16 +8,18 @@ import { format, parseISO, differenceInMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 export function FlightCard({ offer, onSelect }: { offer: any, onSelect: (offer: any) => void }) {
-  const itinerary = offer.itineraries[0];
+  const itinerary = offer.itineraries?.[0];
+  if (!itinerary?.segments?.length) return null;
+
   const firstSegment = itinerary.segments[0];
   const lastSegment = itinerary.segments[itinerary.segments.length - 1];
-  
+
   const departureTime = parseISO(firstSegment.departure.at);
   const arrivalTime = parseISO(lastSegment.arrival.at);
-  const totalDuration = itinerary.duration.replace('PT', '').toLowerCase();
-  
+  const totalDuration = (itinerary.duration || '').replace('PT', '').toLowerCase();
+
   const stops = itinerary.segments.length - 1;
-  const price = offer.price.total;
+  const price = offer.price?.total ?? '—';
 
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 hover:border-adl-sky/30 transition-all p-6 mb-6">

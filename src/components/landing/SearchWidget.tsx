@@ -1,23 +1,36 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Plane, Calendar, Users, MapPin, Search, ArrowRightLeft } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { Plane, Users, MapPin, Search, ArrowRightLeft } from 'lucide-react';
+import { DatePicker } from '@/components/ui/date-picker';
 import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 
 type Location = {
+  id?: string;
   name: string;
   iata: string;
   city: string;
   detailedName: string;
+  type?: string;
+  country?: string;
+  countryCode?: string;
 };
+
+function locationKey(loc: Location, index: number) {
+  return loc.id ?? `${loc.detailedName}|${loc.iata}|${index}`;
+}
+
+function locationSubtitle(loc: Location) {
+  if (loc.country || loc.countryCode) {
+    return [loc.country, loc.countryCode].filter(Boolean).join(' · ');
+  }
+  return loc.name;
+}
 
 export function SearchWidget() {
   const router = useRouter();
@@ -35,23 +48,33 @@ export function SearchWidget() {
   const [loadingOrigin, setLoadingOrigin] = useState(false);
   const [loadingDest, setLoadingDest] = useState(false);
 
-  // Debounced search for locations
+  // Debounced search + annulation des requêtes obsolètes (saisie rapide)
   useEffect(() => {
     if (originSearch.length < 2) {
       setOriginResults([]);
       return;
     }
+    const ac = new AbortController();
     const timeout = setTimeout(async () => {
       setLoadingOrigin(true);
       try {
-        const res = await fetch(`/api/amadeus/airports?keyword=${originSearch}`);
+        const res = await fetch(
+          `/api/amadeus/airports?keyword=${encodeURIComponent(originSearch)}`,
+          { signal: ac.signal }
+        );
+        if (!res.ok) return;
         const data = await res.json();
-        setOriginResults(data);
+        setOriginResults(Array.isArray(data) ? data : []);
+      } catch (e) {
+        if (e instanceof DOMException && e.name === 'AbortError') return;
       } finally {
         setLoadingOrigin(false);
       }
-    }, 500);
-    return () => clearTimeout(timeout);
+    }, 300);
+    return () => {
+      ac.abort();
+      clearTimeout(timeout);
+    };
   }, [originSearch]);
 
   useEffect(() => {
@@ -59,17 +82,27 @@ export function SearchWidget() {
       setDestResults([]);
       return;
     }
+    const ac = new AbortController();
     const timeout = setTimeout(async () => {
       setLoadingDest(true);
       try {
-        const res = await fetch(`/api/amadeus/airports?keyword=${destSearch}`);
+        const res = await fetch(
+          `/api/amadeus/airports?keyword=${encodeURIComponent(destSearch)}`,
+          { signal: ac.signal }
+        );
+        if (!res.ok) return;
         const data = await res.json();
-        setDestResults(data);
+        setDestResults(Array.isArray(data) ? data : []);
+      } catch (e) {
+        if (e instanceof DOMException && e.name === 'AbortError') return;
       } finally {
         setLoadingDest(false);
       }
-    }, 500);
-    return () => clearTimeout(timeout);
+    }, 300);
+    return () => {
+      ac.abort();
+      clearTimeout(timeout);
+    };
   }, [destSearch]);
 
   const handleSearch = () => {
@@ -80,6 +113,8 @@ export function SearchWidget() {
       destinationCode: destination.iata,
       departureDate: format(departureDate, 'yyyy-MM-dd'),
       adults: passengers.toString(),
+      // Corsair International — filtre côté Amadeus Flight Offers Search
+      includedAirlineCodes: 'SS',
     });
 
     if (tripType === 'round' && returnDate) {
@@ -96,7 +131,7 @@ export function SearchWidget() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700 relative overflow-hidden">
+    <div className="w-full max-w-6xl mx-auto glass-morphism rounded-xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-10 duration-700 relative overflow-visible">
       {/* Dégradé entre le fond du panneau et les champs / CTA (sous le contenu, au-dessus du fond) */}
       <div className="pointer-events-none absolute inset-0 z-[1] rounded-xl overflow-hidden" aria-hidden>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-adl-navy to-transparent" />
@@ -131,8 +166,10 @@ export function SearchWidget() {
           <Label className="text-white/80 text-xs mb-2 block font-medium">Origine</Label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
-            <Input 
-              placeholder="D'où partez-vous ?"
+            <Input
+              placeholder="Ville, pays ou aéroport"
+              spellCheck={false}
+              autoComplete="off"
               value={originSearch || (origin?.name || '')}
               onChange={(e) => {
                 setOriginSearch(e.target.value);
@@ -141,10 +178,10 @@ export function SearchWidget() {
               className="bg-white border border-gray-200 text-adl-navy pl-10 h-14 rounded-lg focus:ring-2 focus:ring-adl-navy focus:border-adl-navy placeholder:text-adl-gray/70"
             />
             {originResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 overflow-hidden z-20 shadow-lg">
-                {originResults.map((loc) => (
+              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 z-20 shadow-lg max-h-[min(18rem,45vh)] overflow-y-auto overscroll-y-contain">
+                {originResults.map((loc, index) => (
                   <button
-                    key={loc.iata}
+                    key={locationKey(loc, index)}
                     onClick={() => {
                       setOrigin(loc);
                       setOriginSearch(loc.name);
@@ -153,7 +190,7 @@ export function SearchWidget() {
                     className="w-full text-left p-4 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors"
                   >
                     <div className="text-adl-navy font-bold">{loc.city} ({loc.iata})</div>
-                    <div className="text-adl-gray text-xs">{loc.name}</div>
+                    <div className="text-adl-gray text-xs">{locationSubtitle(loc)}</div>
                   </button>
                 ))}
               </div>
@@ -178,8 +215,10 @@ export function SearchWidget() {
           <Label className="text-white/80 text-xs mb-2 block font-medium">Destination</Label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-adl-gray h-5 w-5" />
-            <Input 
-              placeholder="Où allez-vous ?"
+            <Input
+              placeholder="Ville, pays ou aéroport"
+              spellCheck={false}
+              autoComplete="off"
               value={destSearch || (destination?.name || '')}
               onChange={(e) => {
                 setDestSearch(e.target.value);
@@ -188,10 +227,10 @@ export function SearchWidget() {
               className="bg-white border border-gray-200 text-adl-navy pl-10 h-14 rounded-lg focus:ring-2 focus:ring-adl-navy focus:border-adl-navy placeholder:text-adl-gray/70"
             />
             {destResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 overflow-hidden z-20 shadow-lg">
-                {destResults.map((loc) => (
+              <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-2 z-20 shadow-lg max-h-[min(18rem,45vh)] overflow-y-auto overscroll-y-contain">
+                {destResults.map((loc, index) => (
                   <button
-                    key={loc.iata}
+                    key={locationKey(loc, index)}
                     onClick={() => {
                       setDestination(loc);
                       setDestSearch(loc.name);
@@ -200,7 +239,7 @@ export function SearchWidget() {
                     className="w-full text-left p-4 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors"
                   >
                     <div className="text-adl-navy font-bold">{loc.city} ({loc.iata})</div>
-                    <div className="text-adl-gray text-xs">{loc.name}</div>
+                    <div className="text-adl-gray text-xs">{locationSubtitle(loc)}</div>
                   </button>
                 ))}
               </div>
@@ -212,45 +251,23 @@ export function SearchWidget() {
         <div className="md:col-span-3">
           <Label className="text-white/80 text-xs mb-2 block font-medium">Dates</Label>
           <div className="grid grid-cols-2 gap-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="h-14 bg-white border border-gray-200 text-adl-navy hover:bg-gray-50 flex justify-start pl-4 rounded-lg">
-                  <Calendar className="mr-2 h-4 w-4 text-adl-gray" />
-                  <span className="truncate">{departureDate ? format(departureDate, 'dd MMM', { locale: fr }) : 'Départ'}</span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-white border border-gray-200" align="start">
-                <CalendarComponent
-                  mode="single"
-                  selected={departureDate}
-                  onSelect={setDepartureDate}
-                  disabled={(date) => date < new Date()}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-
-            <Popover>
-              <PopoverTrigger asChild disabled={tripType === 'one'}>
-                <Button 
-                  variant="outline" 
-                  disabled={tripType === 'one'}
-                  className="h-14 bg-white border border-gray-200 text-adl-navy hover:bg-gray-50 flex justify-start pl-4 rounded-lg disabled:opacity-50"
-                >
-                  <Calendar className="mr-2 h-4 w-4 text-adl-gray" />
-                  <span className="truncate">{returnDate ? format(returnDate, 'dd MMM', { locale: fr }) : 'Retour'}</span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-white border border-gray-200" align="start">
-                <CalendarComponent
-                  mode="single"
-                  selected={returnDate}
-                  onSelect={setReturnDate}
-                  disabled={(date) => date < (departureDate || new Date())}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
+            <DatePicker
+              value={departureDate}
+              onChange={(d) => {
+                setDepartureDate(d);
+                if (returnDate && d > returnDate) setReturnDate(undefined);
+              }}
+              label="Aller"
+              placeholder="Depart"
+            />
+            <DatePicker
+              value={returnDate}
+              onChange={setReturnDate}
+              minDate={departureDate}
+              label="Retour"
+              placeholder="Retour"
+              disabled={tripType === 'one'}
+            />
           </div>
         </div>
 

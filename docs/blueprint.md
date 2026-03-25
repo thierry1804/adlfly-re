@@ -3,7 +3,7 @@
 ## Core Features:
 
 - Flight Search & Amadeus Integration: Utilize the Amadeus Flight Offers Search API (via Next.js API Routes) to enable users to search for one-way or round-trip flights based on origin, destination, departure/return dates, and passenger details.
-- Airport & City Autocompletion: Implement real-time autocompletion for origin and destination input fields using the Amadeus Airport & City Search API to enhance user experience.
+- Airport & City Autocompletion: Implement real-time autocompletion for origin and destination input fields using the Amadeus Airport & City Search API to enhance user experience. Results are post-filtered to IATA codes allowed for ADL Fly regions (Réunion, Mayotte, Madagascar, Martinique, Guadeloupe / îles associées); see `src/lib/adlfly-allowed-locations.ts`. Set `ADLFLY_DISABLE_LOCATION_FILTER=true` in `.env.local` to disable this filter for testing.
 - Dynamic Flight Results Display: Present flight search results in a clear list, with flight cards detailing airline, flight info, schedules, duration, stopovers, and total price. Include robust filtering options (price, stops, timings, airline, class) and a summary bar.
 - Detailed Flight Itinerary View: Provide a comprehensive, interactive view of a selected flight's itinerary, featuring a vertical timeline with animated elements, luggage information, and a transparent price breakdown before proceeding to booking.
 - Interactive Landing Page: A visually rich landing page serving as the app's entry point, featuring a full-screen hero with an integrated flight search widget, dynamic content sections (quick stats, destinations, offers, services), and testimonials.

@@ -60,7 +60,10 @@ export function Header() {
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hidden sm:flex">
             <Globe className="h-5 w-5" />
           </Button>
-          <Button variant="outline" className="hidden lg:flex bg-white text-adl-navy border-adl-navy hover:bg-gray-100 rounded-lg">
+          <Button
+            variant="outline"
+            className="hidden lg:flex bg-white text-adl-navy border-adl-navy hover:bg-gray-100 hover:text-adl-navy rounded-lg"
+          >
             <User className="h-4 w-4 mr-2" />
             Mon compte
           </Button>
@@ -93,7 +96,10 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          <Button variant="outline" className="w-full bg-white text-adl-navy border-adl-navy rounded-lg mt-4">
+          <Button
+            variant="outline"
+            className="w-full bg-white text-adl-navy border-adl-navy rounded-lg mt-4 hover:bg-gray-100 hover:text-adl-navy"
+          >
             <User className="h-4 w-4 mr-2" />
             Mon compte
           </Button>

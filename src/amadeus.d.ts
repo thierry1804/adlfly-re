@@ -11,7 +11,12 @@ declare module "amadeus" {
       flightOffersSearch: { get: (params: Record<string, unknown>) => Promise<unknown> };
     };
     referenceData: {
-      locations: { get: (params: Record<string, unknown>) => Promise<unknown> };
+      locations: {
+        get: (params: Record<string, unknown>) => Promise<unknown>;
+        cities: {
+          get: (params: Record<string, unknown>) => Promise<unknown>;
+        };
+      };
     };
   }
 }

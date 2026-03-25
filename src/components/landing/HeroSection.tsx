@@ -9,7 +9,7 @@ const HERO_VIDEO_SRC = 'https://adlfly.re/wp-content/uploads/2023/02/nuage-48501
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-20 overflow-hidden bg-adl-navy">
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-20 bg-adl-navy">
       {/* Background: nuages video + overlay pour lisibilité */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video

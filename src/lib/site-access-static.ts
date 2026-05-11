@@ -15,10 +15,10 @@ export const STATIC_ACCESS_PERM_TOKEN = 'PB5LEk70qv8Odpq9yrwWRuDEvwoPJJaLyb4azAA
 export const STATIC_ACCESS_TEMP_TOKEN = 'm38k3b4g6QK33r90w60w533M4R7L7E7M33Y';
 
 /** Début de validité du jeton temporaire (ms depuis epoch UTC). */
-export const STATIC_ACCESS_TEMP_NOT_BEFORE_MS = Date.parse('2026-04-30T00:00:00+04:00');
+export const STATIC_ACCESS_TEMP_NOT_BEFORE_MS = Date.parse('2026-05-11T00:00:00+04:00');
 
 /** Fin de validité du jeton temporaire (exclusif : accès refusé dès ce instant). */
-export const STATIC_ACCESS_TEMP_EXPIRES_AT_MS = Date.parse('2026-05-04T00:00:00+04:00');
+export const STATIC_ACCESS_TEMP_EXPIRES_AT_MS = Date.parse('2026-05-12T09:00:00+04:00');
 
 const encoder = new TextEncoder();
 
